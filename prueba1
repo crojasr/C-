@@ -1,0 +1,109 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ejercicio1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool estado;
+            do
+            {
+                int opc;
+                string resp;
+                Console.WriteLine("Ingrese una opcion");
+                Console.WriteLine("1. Números de Potencia de 3");
+                Console.WriteLine("2. Generar Matriz");
+                Console.WriteLine("3. Manejo String");
+                Console.WriteLine("4. Salir del Programa");
+                resp = Console.ReadLine();
+                if (int.TryParse(resp, out opc))
+                {
+                    estado = true;
+                    switch (opc)
+                    {
+                        case 1:
+                            int num_pot;
+                            string num_resp;
+                            bool valido;
+                            do
+                            {
+                                Console.WriteLine("Ingrese la cantidad de numeros potencias de 3 a mostrar");
+                                num_resp = Console.ReadLine();
+                                if (int.TryParse(num_resp, out num_pot) && num_pot >= 5 && num_pot <= 20)
+                                {
+                                    Console.Clear();
+                                    valido = true;
+                                    double[] potencias = new double[num_pot];
+                                    //codigo si ingresa un valor válido
+
+                                    //poblar el arreglo con las potencias
+                                    for (int i = 0; i < num_pot; i++)
+                                    {
+                                        potencias[i] = Math.Pow(3, i);
+                                    }
+
+
+                                    //escribir los numeros que son potencia de 3
+
+                                    for (int i = 0; i < num_pot; i++)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.WriteLine("[" + potencias[i] + "]");
+                                        double ultima_pot = potencias[i];
+
+                                    }
+
+                                    for (int i = 0; i < potencias[num_pot - 1]; i++)
+                                    {
+                                        for (int j = 0; j < potencias[i]; j++)
+                                        {
+                                            if (potencias[j] == i)
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.Red;
+                                                Console.Write(i + "-");
+                                            }
+                                            else
+                                            {
+                                                Console.ForegroundColor = ConsoleColor.Green;
+                                                Console.Write(i + "-");
+                                            }
+                                        }
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    valido = false;
+                                    //código si ingresa valor no válido
+                                    Console.WriteLine("ingresaste cualquier wea");
+                                }
+                            } while (valido == false);
+                            break;
+                        case 2:
+                            //generar matriz
+                            Console.WriteLine("ingrese las dimensiones del arreglo bidimensional");
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Debes ingresar una opción válida");
+                    estado = false;
+                }
+            } while (estado == false);
+            {
+
+            }
+            Console.ReadKey();
+        }
+    }
+}
